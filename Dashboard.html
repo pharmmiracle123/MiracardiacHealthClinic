@@ -308,14 +308,20 @@
       const TILES = {
         patient: [T('doctors.html', '👨‍⚕️', 'Find Doctor'), T('appointments.html', '📅', 'Appointments'), T('pharmacy-search.html', '💊', 'Pharmacy'),
           T('cart.html', '🛒', 'My Cart'), T('Nearby Services.html', '📍', 'Nearby'), T('student-hub.html', '🎓', 'Student Hub'),
-          T('customer-care.html', '🎧', 'Support'), T('Update profile.html', '👤', 'My Profile'), T('doctor-register.html', '📝', 'Become a Doctor')],
-        doctor: [T('appointments.html', '📅', 'Appointments'), T('doctor-availability.html', '🗓️', 'My Hours'), T('doctor-register.html', '🩺', 'Doctor Profile'),
-          T('Update profile.html', '👤', 'My Account'), T('Nearby Services.html', '📍', 'Nearby'), T('customer-care.html', '🎧', 'Support')],
-        pharmacist: [T('pharmacist.html', '💊', 'Manage Pharmacy'), T('pharmacist.html#orders', '📦', 'Orders'), T('Nearby Services.html', '📍', 'Nearby Map'),
-          T('Update profile.html', '👤', 'My Account'), T('customer-care.html', '🎧', 'Support')],
-        support: [T('support-agent.html', '🎫', 'Ticket Queue'), T('customer-care.html', '🎧', 'Support Center'), T('Update profile.html', '👤', 'My Account')],
-        admin: [T('admin.html', '⚙️', 'Admin Panel'), T('student-hub.html', '🎓', 'Student Hub'), T('customer-care.html', '🎧', 'Support Center'),
-          T('Update profile.html', '👤', 'My Account'), T('Nearby Services.html', '📍', 'Nearby')]
+          T('counseling.html', '💬', 'Counseling'), T('customer-care.html', '🎧', 'Support'), T('Update profile.html', '👤', 'My Profile')],
+        doctor: [T('hms-hub.html', '🏥', 'HMS Hub'), T('emr.html', '📋', 'EMR / Chart'), T('appointments.html', '📅', 'Appointments'),
+          T('surgery-ot.html', '🔪', 'Surgery / OT'), T('clinical-guidelines.html', '📖', 'Guidelines'), T('doctor-availability.html', '🗓️', 'My Hours'),
+          T('laboratory.html', '🧪', 'Lab Orders'), T('inpatient.html', '🛏️', 'Wards'), T('Update profile.html', '👤', 'My Account')],
+        nurse: [T('hms-hub.html', '🏥', 'HMS Hub'), T('nursing.html', '👩‍⚕️', 'Nursing Station'), T('emr.html', '📋', 'EMR'),
+          T('inpatient.html', '🛏️', 'Ward Board'), T('emergency.html', '🚨', 'Emergency'), T('clinical-guidelines.html', '📖', 'Guidelines')],
+        surgeon: [T('hms-hub.html', '🏥', 'HMS Hub'), T('surgery-ot.html', '🔪', 'OT Board'), T('emr.html', '📋', 'EMR'),
+          T('inpatient.html', '🛏️', 'Wards'), T('clinical-guidelines.html', '📖', 'Guidelines'), T('appointments.html', '📅', 'Appointments')],
+        pharmacist: [T('pharmacist.html', '💊', 'Manage Pharmacy'), T('hms-hub.html', '🏥', 'HMS Hub'), T('inventory.html', '📦', 'Inventory'),
+          T('pharmacist.html#orders', '📦', 'Orders'), T('Update profile.html', '👤', 'My Account'), T('customer-care.html', '🎧', 'Support')],
+        support: [T('support-agent.html', '🎫', 'Ticket Queue'), T('customer-care.html', '🎧', 'Support Center'), T('counseling.html', '💬', 'Counseling'), T('Update profile.html', '👤', 'My Account')],
+        admin: [T('hms-hub.html', '🏥', 'Full HMS'), T('admin.html', '⚙️', 'Admin Panel'), T('analytics.html', '📊', 'Analytics'),
+          T('billing.html', '💰', 'Billing'), T('staff-hr.html', '👥', 'Staff / HR'), T('student-hub.html', '🎓', 'Student Hub'),
+          T('quality-safety.html', '🛡️', 'Quality'), T('Update profile.html', '👤', 'My Account'), T('Nearby Services.html', '📍', 'Nearby')]
       };
       $('tiles').innerHTML = (TILES[role] || TILES.patient).map(x => `<a href="${x.href}" class="tile"><span class="e">${x.e}</span><span class="t">${x.t}</span></a>`).join('');
 
