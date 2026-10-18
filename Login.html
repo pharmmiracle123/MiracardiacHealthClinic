@@ -218,11 +218,9 @@
     });
 
     /* ---------- Google login (popup, then redirect fallback) ---------- */
-    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
     $('googleBtn').addEventListener('click', async () => {
       hideMsg($('loginMsg')); setBusy(true);
       try {
-        if (isMobile) { await signInWithRedirect(auth, googleProvider); return; } // popups are unreliable on phones
         const cred = await signInWithPopup(auth, googleProvider);
         await goToDashboard(cred.user);
       } catch (err) {
@@ -237,7 +235,7 @@
     });
 
     /* ---------- Result after a Google redirect ---------- */
-    getRedirectResult(auth).then((res) => { if (res && res.user) goToDashboard(res.user); }).catch((err) => {
+    getRedirectResult(auth).catch((err) => {
       console.error(err);
       if (!going) showMsg($('loginMsg'), friendlyError(err));
     });
