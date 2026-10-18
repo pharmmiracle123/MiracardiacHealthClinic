@@ -51,7 +51,8 @@ import {
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDQZ3vYlm-VpWao55RAkqL-owwk61fhHKM",
-  authDomain: "miracardiachealth.firebaseapp.com",
+  // Same-origin auth domain (proxied by vercel.json) so mobile browsers do not block the Google sign-in
+  authDomain: (["localhost","127.0.0.1"].includes(location.hostname) ? "miracardiachealth.firebaseapp.com" : location.host),
   projectId: "miracardiachealth",
   storageBucket: "miracardiachealth.firebasestorage.app",
   messagingSenderId: "407534576563",
