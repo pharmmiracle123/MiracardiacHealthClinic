@@ -118,7 +118,6 @@
   </main>
 
   <script type="module">
-    import { signInWithRedirect, getRedirectResult } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
     import {auth, db, googleProvider, signInWithPopup, createUserWithEmailAndPassword, updateProfile,
       onAuthStateChanged, doc, getDoc, setDoc, serverTimestamp, applyPlatformBranding} from './js/config.js';
 
@@ -278,10 +277,6 @@
       if (err) return showMsg(err);
       setBusy(true, 'Please wait…');
       try {
-        if (/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
-          sessionStorage.setItem('mhRegForm', JSON.stringify({ name: $('name').value.trim(), phone: $('phone').value.replace(/[\s\-()]/g, ''), role }));
-          await signInWithRedirect(auth, googleProvider); return;
-        }
         const cred = await signInWithPopup(auth, googleProvider);
         const snap = await getDoc(doc(db, 'users', cred.user.uid));
         if (snap.exists()) {
@@ -297,16 +292,6 @@
         setBusy(false);
       }
     });
-
-    /* ---------- Finish Google sign-up after a mobile redirect ---------- */
-    getRedirectResult(auth).then(async (res) => {
-      if (!res || !res.user) return;
-      busy = true;
-      const saved = JSON.parse(sessionStorage.getItem('mhRegForm') || '{}'); sessionStorage.removeItem('mhRegForm');
-      const snap = await getDoc(doc(db, 'users', res.user.uid));
-      if (!snap.exists()) await createProfile(res.user, { name: saved.name || res.user.displayName, phone: saved.phone || '' });
-      showMsg('Signed in! Taking you in…', 'ok'); setTimeout(goAfter, 700);
-    }).catch((ex) => { console.error(ex); const m = friendlyError(ex); if (m) showMsg(m); busy = false; });
 
     /* ---------- Already signed in? go to dashboard ---------- */
     onAuthStateChanged(auth, (user) => { if (user && !busy) location.replace(nextUrl()); });
